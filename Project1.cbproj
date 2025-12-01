@@ -165,6 +165,20 @@
             <DependentOn>Rompecabezas.h</DependentOn>
             <BuildOrder>7</BuildOrder>
         </CppCompile>
+        <CppCompile Include="FormMenu.cpp">
+            <Form>FormMenu</Form>
+            <FormType>dfm</FormType>
+            <DependentOn>FormMenu.h</DependentOn>
+            <BuildOrder>3</BuildOrder>
+        </CppCompile>
+        <FormResources Include="FormMenu.dfm"/>
+        <CppCompile Include="FormInstrucciones.cpp">
+            <Form>FormInstrucciones</Form>
+            <FormType>dfm</FormType>
+            <DependentOn>FormInstrucciones.h</DependentOn>
+            <BuildOrder>4</BuildOrder>
+        </CppCompile>
+        <FormResources Include="FormInstrucciones.dfm"/>
         <CppCompile Include="U-COLAPRI\COLA_PRIORIDAD.cpp">
             <DependentOn>U-COLAPRI\COLA_PRIORIDAD.h</DependentOn>
             <BuildOrder>6</BuildOrder>

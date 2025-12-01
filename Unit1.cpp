@@ -4,6 +4,7 @@
 #pragma hdrstop
 
 #include "Unit1.h"
+#include "FormMenu.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
@@ -59,6 +60,73 @@ __fastcall TForm1::TForm1(TComponent* Owner)
 	Timer1->Enabled = false;
 }
 //---------------------------------------------------------------------------
+void TForm1::MostrarGanador(int jugador)
+{
+	// Cambiar color de fondo
+	if (jugador == 1) {
+		Color = clBlue;
+		LabelGanador->Caption = L"¡JUGADOR 1 GANA!";
+		LabelGanador->Font->Color = clYellow;
+	} else {
+		Color = clGreen;
+		LabelGanador->Caption = L"¡JUGADOR 2 GANA!";
+		LabelGanador->Font->Color = clWhite;
+	}
+	
+	// Mostrar label del ganador
+	LabelGanador->Visible = true;
+	LabelGanador->BringToFront();
+	
+	// Mostrar boton para jugar de nuevo
+	ButtonJugarDeNuevo->Visible = true;
+	ButtonJugarDeNuevo->BringToFront();
+	
+	// Ocultar otros elementos
+	LabelJugador1->Visible = false;
+	LabelJugador2->Visible = false;
+	ButtonDesordenar->Visible = false;
+}
+//---------------------------------------------------------------------------
+void TForm1::OcultarGanador()
+{
+	// Restaurar color de fondo
+	Color = clBtnFace;
+	
+	// Ocultar label del ganador
+	LabelGanador->Visible = false;
+	ButtonJugarDeNuevo->Visible = false;
+	
+	// Mostrar otros elementos
+	LabelJugador1->Visible = true;
+	LabelJugador2->Visible = true;
+	ButtonDesordenar->Visible = true;
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm1::ButtonDesordenarClick(TObject *Sender)
+{
+	Desarmar();
+	Pintar();
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm1::ButtonVolverMenuClick(TObject *Sender)
+{
+	// Ocultar Form1 y mostrar el menu principal
+	Hide();
+	OcultarGanador();
+	R1.IniciarJuego();
+	R2.IniciarJuego();
+	FormMenu->Show();
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm1::ButtonJugarDeNuevoClick(TObject *Sender)
+{
+	// Reiniciar el juego
+	OcultarGanador();
+	R1.IniciarJuego();
+	R2.IniciarJuego();
+	Desarmar();
+	Pintar();
+}
 //------------------------------------------------------------------------
 
 void __fastcall TForm1::Timer1Timer(TObject *Sender)
@@ -70,10 +138,10 @@ void __fastcall TForm1::Timer1Timer(TObject *Sender)
 
     if (R1.Solucionado()) {
 		Timer1->Enabled = false;
-		ShowMessage("Jugador 1 GANA");
+		MostrarGanador(1);
 	} else if (R2.Solucionado()) {
 		Timer1->Enabled = false;
-		ShowMessage("Jugador 2 GANA");
+		MostrarGanador(2);
 	}
 
 	Pintar();
@@ -81,6 +149,10 @@ void __fastcall TForm1::Timer1Timer(TObject *Sender)
 //---------------------------------------------------------------------------
 void __fastcall TForm1::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift)
 {
+	// No procesar teclas si se muestra el ganador
+	if (LabelGanador->Visible)
+		return;
+
 	WORD key = Key;
 	Key |= 0x20;
 	if (Key == 'w' || Key == 'a' || Key == 's' || Key == 'd') {
@@ -92,21 +164,19 @@ void __fastcall TForm1::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shif
         QP.mostrar(500, 10);
 	}
 	else if (Shift.Contains(ssCtrl) && Key == 'z')
-		//QP.poner(Key, 0);
 		R1.Retroceder();
 	else if (key == VK_OEM_MINUS)
-		//QP.poner(Key, 1);
 		R2.Retroceder();
-	else if (key == VK_RETURN) {
-		Desarmar();
-		Pintar();
-	}
 
 	Timer1->Enabled = true;
 }
 //---------------------------------------------------------------------------
 void TForm1::Pintar()
 {
+	// No pintar si se muestra el ganador
+	if (LabelGanador->Visible)
+		return;
+
 	Repaint();
 	int x1 = Form1->Width / 6;
 	int x2 = Form1->Width / 2;
