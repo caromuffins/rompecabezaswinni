@@ -169,21 +169,24 @@ void __fastcall TForm1::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shif
 		return;
 	}
 	
-	// Convertir a minúscula para WASD
-	WORD keyLower = key | 0x20;
-	if (keyLower == 'w' || keyLower == 'a' || keyLower == 's' || keyLower == 'd') {
+	// Convertir a minúscula solo para teclas alfabéticas WASD
+	if (key == 'W' || key == 'w' || key == 'A' || key == 'a' ||
+		key == 'S' || key == 's' || key == 'D' || key == 'd') {
+		WORD keyLower = key | 0x20;
 		QP.poner(keyLower, 0);
 		QP.mostrar(500, 10);
 		Timer1->Enabled = true;
 		return;
 	}
 	
-	if (Shift.Contains(ssCtrl) && keyLower == 'z')
+	// Retroceder movimientos
+	if (Shift.Contains(ssCtrl) && (key == 'Z' || key == 'z')) {
 		R1.Retroceder();
-	else if (key == VK_OEM_MINUS)
+		Timer1->Enabled = true;
+	} else if (key == VK_OEM_MINUS) {
 		R2.Retroceder();
-
-	Timer1->Enabled = true;
+		Timer1->Enabled = true;
+	}
 }
 //---------------------------------------------------------------------------
 void TForm1::Pintar()
