@@ -34,15 +34,17 @@ void EjecutarMovimiento()
 {
 	int key;
 	QP.sacar(key);
+	// Controles invertidos para que sean intuitivos:
+	// Presionar izquierda -> deslizar vacío a derecha -> pieza visual se mueve a izquierda
 	switch (key) {
-	case 'a': R1.MoverZ(0); break;
-	case 'w': R1.MoverZ(1); break;
-	case 'd': R1.MoverZ(2); break;
-	case 's': R1.MoverZ(3); break;
-	case VK_LEFT: R2.MoverZ(0); break;
-	case VK_UP: R2.MoverZ(1); break;
-	case VK_RIGHT: R2.MoverZ(2); break;
-	case VK_DOWN: R2.MoverZ(3); break;
+	case 'a': R1.MoverZ(2); break;  // izquierda -> deslizar derecha
+	case 'w': R1.MoverZ(3); break;  // arriba -> deslizar abajo
+	case 'd': R1.MoverZ(0); break;  // derecha -> deslizar izquierda
+	case 's': R1.MoverZ(1); break;  // abajo -> deslizar arriba
+	case VK_LEFT: R2.MoverZ(2); break;   // <- -> deslizar derecha
+	case VK_UP: R2.MoverZ(3); break;     // ↑ -> deslizar abajo
+	case VK_RIGHT: R2.MoverZ(0); break;  // -> -> deslizar izquierda
+	case VK_DOWN: R2.MoverZ(1); break;   // ↓ -> deslizar arriba
 	default:
 		break;
 	}

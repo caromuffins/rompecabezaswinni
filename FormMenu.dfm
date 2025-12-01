@@ -5,7 +5,7 @@ object FormMenu: TFormMenu
   Caption = 'Rompecabezas - Menú Principal'
   ClientHeight = 500
   ClientWidth = 700
-  Color = $00FFE4CC
+  Color = clMoneyGreen
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWhite
   Font.Height = -12
@@ -21,7 +21,7 @@ object FormMenu: TFormMenu
     Width = 500
     Height = 340
     BevelOuter = bvNone
-    Color = $00FFE4CC
+    Color = clMoneyGreen
     ParentBackground = False
     TabOrder = 0
     object LabelTitulo: TLabel

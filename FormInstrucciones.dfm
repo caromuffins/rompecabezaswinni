@@ -5,7 +5,7 @@ object FormInstrucciones: TFormInstrucciones
   Caption = 'Instrucciones del Juego'
   ClientHeight = 450
   ClientWidth = 550
-  Color = $00E6F2FF
+  Color = $00FFE4E1
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -12
@@ -20,7 +20,7 @@ object FormInstrucciones: TFormInstrucciones
     Width = 500
     Height = 410
     BevelOuter = bvNone
-    Color = $00E6F2FF
+    Color = $00FFE4E1
     ParentBackground = False
     TabOrder = 0
     object LabelTitulo: TLabel
