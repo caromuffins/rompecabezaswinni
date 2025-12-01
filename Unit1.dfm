@@ -76,7 +76,7 @@ object Form1: TForm1
     Top = 520
     Width = 130
     Height = 50
-    Caption = 'Volver al Menu'
+    Caption = 'Volver al Menú'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -14

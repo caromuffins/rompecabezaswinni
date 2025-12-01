@@ -2,7 +2,7 @@ object FormMenu: TFormMenu
   Left = 0
   Top = 0
   BorderStyle = bsNone
-  Caption = 'Rompecabezas - Menu Principal'
+  Caption = 'Rompecabezas - Menú Principal'
   ClientHeight = 500
   ClientWidth = 700
   Color = clNavy
