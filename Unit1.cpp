@@ -3,6 +3,7 @@
 #include <vcl.h>
 #pragma hdrstop
 
+#include <ctime>  // Para time()
 #include "Unit1.h"
 #include "FormMenu.h"
 //---------------------------------------------------------------------------
@@ -21,12 +22,11 @@ void Desarmar()
 {
 	R1.IniciarJuego();
 	R2.IniciarJuego();
-	int n = rand();
-	while (n > 0) {
+	int n = 50 + rand() % 51;  // Entre 50 y 100 movimientos
+	for (int i = 0; i < n; i++) {
 		int a = rand() % 4;
 		R1.MoverZ(a, false);
 		R2.MoverZ(a, false);
-		n--;
 	}
 }
 
@@ -58,6 +58,8 @@ __fastcall TForm1::TForm1(TComponent* Owner)
 
 	Timer1->Interval = 500;
 	Timer1->Enabled = false;
+
+	srand(time(NULL));  // Inicializar semilla aleatoria una vez al inicio
 }
 //---------------------------------------------------------------------------
 void TForm1::MostrarGanador(int jugador)
@@ -65,15 +67,15 @@ void TForm1::MostrarGanador(int jugador)
 	// Deshabilitar timer inmediatamente
 	Timer1->Enabled = false;
 	
-	// Cambiar color de fondo
+	// Cambiar color de fondo con colores pastel
 	if (jugador == 1) {
-		Color = clBlue;
+		Color = TColor(0xE6E6FA);  // Lavanda pastel
 		LabelGanador->Caption = L"¡JUGADOR 1 GANA!";
-		LabelGanador->Font->Color = clYellow;
+		LabelGanador->Font->Color = TColor(0x8B008B);  // Púrpura oscuro (contraste)
 	} else {
-		Color = clGreen;
+		Color = TColor(0xFFB6C1);  // Rosa pastel
 		LabelGanador->Caption = L"¡JUGADOR 2 GANA!";
-		LabelGanador->Font->Color = clWhite;
+		LabelGanador->Font->Color = TColor(0xC71585);  // Rosa oscuro (contraste)
 	}
 	
 	// Mostrar label del ganador
@@ -210,7 +212,7 @@ void TForm1::Pintar()
 	y *= 4;
 	x1 += ancho * 2;
 	x2 += ancho * 2;
-	Canvas->Brush->Color = clSilver;
+	Canvas->Brush->Color = TColor(0xE6E6FA);  // Lavanda pastel para ambos teclados
 	Canvas->Rectangle(x1 + ancho, y - alto, x1 + ancho * 2, y);
 	Canvas->Rectangle(x1, y, x1 + ancho, y + alto);
 	Canvas->Rectangle(x1 + ancho, y, x1 + ancho * 2, y + alto);

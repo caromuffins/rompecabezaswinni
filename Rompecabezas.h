@@ -34,7 +34,7 @@ struct Pieza {
 		int w = ancho * 0.5;
 		int h = alto*0.25;
 
-		TC->Brush->Color = clYellow;
+		TC->Brush->Color = this->color;
 		TC->Rectangle(x, y, x + ancho, y + alto);
 
 		TC->Brush->Style = bsClear;
