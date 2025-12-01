@@ -16,6 +16,7 @@
 
 # Debugger Files
 *.pdb
+*.tds
 
 # Compiled Dynamic libraries
 *.so
@@ -39,3 +40,17 @@
 
 # debug information files
 *.dwo
+
+# C++ Builder specific
+Win32/
+Win64/
+__history/
+__recovery/
+*.local
+*.identcache
+*.projdata
+*.tvsconfig
+*.dcu
+*.dres
+*.map
+*.stat
