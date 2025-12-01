@@ -16,6 +16,19 @@ void Rompecabezas::IniciarJuego()
 	int n = 3;
 	int a = 0;
 	MD.dimensionar(n, n);
+
+	// Paleta pastel
+	TColor coloresPastel[] = {
+		TColor(0xFFE4E1), // Rosa pastel
+		TColor(0xE6E6FA), // Lavanda
+		TColor(0xF0E68C), // Amarillo pastel
+		TColor(0xB0E0E6), // Azul pastel
+		TColor(0xDDA0DD), // Ciruela pastel
+		TColor(0xF5DEB3), // Trigo pastel
+		TColor(0xFFDAB9), // Durazno pastel
+		TColor(0xE0BBE4)  // Lila pastel
+	};
+
 	for (int i = 1; i <= n; i++) {
 		for (int j = 1; j <= n; j++) {
 			MD.poner(i, j, a + 1);
@@ -24,12 +37,14 @@ void Rompecabezas::IniciarJuego()
 				p[a].id = a + 1;
 				p[a].fila = i;
 				p[a].col = j;
+				p[a].color = coloresPastel[a % 8];  // Ciclar colores
 			} else {
 				z.id = 0;
 				z.fila = i;
 				z.col = j;
+				z.color = TColor(0xF5F5F5);  // Blanco humo (muy suave)
 			}
-            a++;
+			a++;
 		}
 	}
 	MD.poner(n, n, 0);
@@ -79,11 +94,11 @@ void Rompecabezas::MoverZ(int mov, bool g)
 
 void Rompecabezas::Retroceder()
 {
-	int k;
-
-	P.sacar(k);
-
-	MoverZ(k, false);
+	if (!P.vacia()) {
+		int k;
+		P.sacar(k);
+		MoverZ(k, false);
+	}
 }
 
 bool Rompecabezas::deslizarIzquierda()

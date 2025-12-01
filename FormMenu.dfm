@@ -5,7 +5,7 @@ object FormMenu: TFormMenu
   Caption = 'Rompecabezas - Menú Principal'
   ClientHeight = 500
   ClientWidth = 700
-  Color = clNavy
+  Color = $00FFE4CC
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWhite
   Font.Height = -12
@@ -21,7 +21,7 @@ object FormMenu: TFormMenu
     Width = 500
     Height = 340
     BevelOuter = bvNone
-    Color = clNavy
+    Color = $00FFE4CC
     ParentBackground = False
     TabOrder = 0
     object LabelTitulo: TLabel
@@ -33,7 +33,7 @@ object FormMenu: TFormMenu
       AutoSize = False
       Caption = 'ROMPECABEZAS'
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clYellow
+      Font.Color = clNavy
       Font.Height = -48
       Font.Name = 'Segoe UI'
       Font.Style = [fsBold]
@@ -48,7 +48,7 @@ object FormMenu: TFormMenu
       AutoSize = False
       Caption = 'Juego de 2 Jugadores'
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
+      Font.Color = clGray
       Font.Height = -24
       Font.Name = 'Segoe UI'
       Font.Style = []
