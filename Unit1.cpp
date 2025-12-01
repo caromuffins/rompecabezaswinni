@@ -22,7 +22,6 @@ void Desarmar()
 {
 	R1.IniciarJuego();
 	R2.IniciarJuego();
-	srand(time(NULL));  // Inicializar semilla aleatoria
 	int n = 50 + rand() % 51;  // Entre 50 y 100 movimientos
 	for (int i = 0; i < n; i++) {
 		int a = rand() % 4;
@@ -59,6 +58,8 @@ __fastcall TForm1::TForm1(TComponent* Owner)
 
 	Timer1->Interval = 500;
 	Timer1->Enabled = false;
+
+	srand(time(NULL));  // Inicializar semilla aleatoria una vez al inicio
 }
 //---------------------------------------------------------------------------
 void TForm1::MostrarGanador(int jugador)

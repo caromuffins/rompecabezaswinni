@@ -17,8 +17,8 @@ void Rompecabezas::IniciarJuego()
 	int a = 0;
 	MD.dimensionar(n, n);
 
-	// Paleta pastel
-	TColor coloresPastel[] = {
+	// Paleta pastel (static const para evitar inicialización repetida)
+	static const TColor coloresPastel[] = {
 		TColor(0xFFE4E1), // Rosa pastel
 		TColor(0xE6E6FA), // Lavanda
 		TColor(0xF0E68C), // Amarillo pastel
