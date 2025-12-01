@@ -2,8 +2,8 @@ object Form1: TForm1
   Left = 0
   Top = 0
   Caption = 'Rompecabezas - Juego'
-  ClientHeight = 600
-  ClientWidth = 900
+  ClientHeight = 700
+  ClientWidth = 1200
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -15,8 +15,8 @@ object Form1: TForm1
   PixelsPerInch = 96
   TextHeight = 15
   object LabelJugador1: TLabel
-    Left = 120
-    Top = 50
+    Left = 150
+    Top = 80
     Width = 150
     Height = 30
     Caption = 'JUGADOR 1'
@@ -28,8 +28,8 @@ object Form1: TForm1
     ParentFont = False
   end
   object LabelJugador2: TLabel
-    Left = 550
-    Top = 50
+    Left = 650
+    Top = 80
     Width = 150
     Height = 30
     Caption = 'JUGADOR 2'
@@ -43,8 +43,8 @@ object Form1: TForm1
   object LabelGanador: TLabel
     Left = 0
     Top = 0
-    Width = 900
-    Height = 600
+    Width = 1200
+    Height = 700
     Alignment = taCenter
     AutoSize = False
     Font.Charset = DEFAULT_CHARSET
@@ -57,8 +57,8 @@ object Form1: TForm1
     Visible = False
   end
   object ButtonDesordenar: TButton
-    Left = 370
-    Top = 520
+    Left = 520
+    Top = 600
     Width = 160
     Height = 50
     Caption = 'Desordenar Piezas'
@@ -69,11 +69,12 @@ object Form1: TForm1
     Font.Style = [fsBold]
     ParentFont = False
     TabOrder = 0
+    TabStop = False
     OnClick = ButtonDesordenarClick
   end
   object ButtonVolverMenu: TButton
-    Left = 750
-    Top = 520
+    Left = 1050
+    Top = 600
     Width = 130
     Height = 50
     Caption = 'Volver al Menú'
@@ -84,10 +85,11 @@ object Form1: TForm1
     Font.Style = []
     ParentFont = False
     TabOrder = 1
+    TabStop = False
     OnClick = ButtonVolverMenuClick
   end
   object ButtonJugarDeNuevo: TButton
-    Left = 350
+    Left = 500
     Top = 350
     Width = 200
     Height = 60
@@ -99,12 +101,13 @@ object Form1: TForm1
     Font.Style = [fsBold]
     ParentFont = False
     TabOrder = 2
+    TabStop = False
     Visible = False
     OnClick = ButtonJugarDeNuevoClick
   end
   object Timer1: TTimer
     OnTimer = Timer1Timer
-    Left = 800
+    Left = 1100
     Top = 30
   end
 end
