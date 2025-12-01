@@ -62,6 +62,9 @@ __fastcall TForm1::TForm1(TComponent* Owner)
 //---------------------------------------------------------------------------
 void TForm1::MostrarGanador(int jugador)
 {
+	// Deshabilitar timer inmediatamente
+	Timer1->Enabled = false;
+	
 	// Cambiar color de fondo
 	if (jugador == 1) {
 		Color = clBlue;
@@ -106,6 +109,7 @@ void __fastcall TForm1::ButtonDesordenarClick(TObject *Sender)
 {
 	Desarmar();
 	Pintar();
+	this->SetFocus(); // Devolver foco al formulario
 }
 //---------------------------------------------------------------------------
 void __fastcall TForm1::ButtonVolverMenuClick(TObject *Sender)
@@ -126,6 +130,7 @@ void __fastcall TForm1::ButtonJugarDeNuevoClick(TObject *Sender)
 	R2.IniciarJuego();
 	Desarmar();
 	Pintar();
+	this->SetFocus(); // Devolver foco al formulario
 }
 //------------------------------------------------------------------------
 
@@ -154,16 +159,26 @@ void __fastcall TForm1::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shif
 		return;
 
 	WORD key = Key;
-	Key |= 0x20;
-	if (Key == 'w' || Key == 'a' || Key == 's' || Key == 'd') {
-		QP.poner(Key, 0);
+	
+	// Procesar teclas de flecha para Jugador 2 ANTES de cualquier otra cosa
+	if (key == VK_UP || key == VK_LEFT || key == VK_DOWN || key == VK_RIGHT) {
+		QP.poner(key, 1);
 		QP.mostrar(500, 10);
+		Timer1->Enabled = true;
+		Key = 0; // Consumir la tecla para evitar navegación de botones
+		return;
 	}
-	else if (Key == VK_UP || Key == VK_LEFT || Key == VK_DOWN || Key == VK_RIGHT) {
-		QP.poner(Key, 1);
-        QP.mostrar(500, 10);
+	
+	// Convertir a minúscula para WASD
+	WORD keyLower = key | 0x20;
+	if (keyLower == 'w' || keyLower == 'a' || keyLower == 's' || keyLower == 'd') {
+		QP.poner(keyLower, 0);
+		QP.mostrar(500, 10);
+		Timer1->Enabled = true;
+		return;
 	}
-	else if (Shift.Contains(ssCtrl) && Key == 'z')
+	
+	if (Shift.Contains(ssCtrl) && keyLower == 'z')
 		R1.Retroceder();
 	else if (key == VK_OEM_MINUS)
 		R2.Retroceder();
